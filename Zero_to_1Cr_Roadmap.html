@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zero to ₹1 Crore — Complete B.Tech AI/ML Roadmap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --surface2: #1a1a24;
+      --border: #2a2a3a;
+      --accent: #7c3aed;
+      --accent2: #06b6d4;
+      --accent3: #10b981;
+      --accent4: #f59e0b;
+      --accent5: #ef4444;
+      --text: #e2e8f0;
+      --text2: #94a3b8;
+      --text3: #64748b;
+      --gold: #fbbf24;
+      --gradient1: linear-gradient(135deg, #7c3aed, #06b6d4);
+      --gradient2: linear-gradient(135deg, #10b981, #06b6d4);
+      --gradient3: linear-gradient(135deg, #f59e0b, #ef4444);
+      --gradient4: linear-gradient(135deg, #7c3aed, #ec4899);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ─── PRINT ─── */
+    @media print {
+      body { background: #fff; color: #111; font-size: 12px; }
+      .no-print { display: none; }
+      .card, .section, .timeline-item { break-inside: avoid; }
+      a { color: #7c3aed; }
+      .hero { background: #7c3aed !important; }
+    }
+
+    /* ─── TOP PRINT BUTTON ─── */
+    .print-btn {
+      position: fixed; top: 20px; right: 20px; z-index: 999;
+      background: var(--gradient1); color: #fff;
+      padding: 12px 24px; border-radius: 50px;
+      border: none; cursor: pointer; font-weight: 700;
+      font-size: 14px; font-family: 'Inter', sans-serif;
+      box-shadow: 0 4px 30px rgba(124,58,237,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .print-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(124,58,237,0.7); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      padding: 80px 40px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(124,58,237,0.3) 0%, transparent 60%),
+                  radial-gradient(circle at 70% 50%, rgba(6,182,212,0.2) 0%, transparent 60%);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(124,58,237,0.2);
+      border: 1px solid rgba(124,58,237,0.5);
+      color: #a78bfa; padding: 6px 20px;
+      border-radius: 50px; font-size: 13px; font-weight: 600;
+      margin-bottom: 20px; position: relative;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff 0%, #a78bfa 50%, #67e8f9 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; position: relative;
+      line-height: 1.2; margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 18px; color: var(--text2);
+      max-width: 650px; margin: 0 auto 30px; position: relative;
+    }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 40px;
+      flex-wrap: wrap; position: relative;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat .num {
+      font-size: 32px; font-weight: 900;
+      background: var(--gradient1);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-stat .label { font-size: 12px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ─── CONTAINER ─── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+    /* ─── SECTION HEADER ─── */
+    .section-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 28px; margin-top: 48px;
+    }
+    .section-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .section-header h2 { font-size: 26px; font-weight: 800; }
+    .section-header p { color: var(--text2); font-size: 14px; }
+
+    /* ─── CARD ─── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+      margin-bottom: 20px;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+
+    /* ─── GRID ─── */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+
+    /* ─── ACCENT CARD ─── */
+    .accent-card {
+      border-radius: 16px; padding: 24px; margin-bottom: 20px;
+      position: relative; overflow: hidden;
+    }
+    .accent-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: inherit; filter: brightness(0.15) saturate(2);
+    }
+    .accent-card > * { position: relative; }
+
+    /* ─── TABLE ─── */
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    thead th {
+      padding: 12px 16px; text-align: left; font-size: 12px;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--text3); border-bottom: 2px solid var(--border);
+    }
+    tbody td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 14px; }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: rgba(124,58,237,0.05); }
+
+    /* ─── BADGE ─── */
+    .badge {
+      display: inline-block; padding: 3px 10px; border-radius: 50px;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .badge-purple { background: rgba(124,58,237,0.2); color: #a78bfa; border: 1px solid rgba(124,58,237,0.3); }
+    .badge-cyan   { background: rgba(6,182,212,0.2);  color: #67e8f9; border: 1px solid rgba(6,182,212,0.3); }
+    .badge-green  { background: rgba(16,185,129,0.2); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+    .badge-amber  { background: rgba(245,158,11,0.2); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+    .badge-red    { background: rgba(239,68,68,0.2);  color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+
+    /* ─── TIMELINE ─── */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 10px; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2), var(--accent3));
+    }
+    .timeline-item { position: relative; margin-bottom: 32px; }
+    .timeline-dot {
+      position: absolute; left: -37px; top: 4px;
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 2px solid var(--accent); background: var(--bg);
+      box-shadow: 0 0 10px rgba(124,58,237,0.6);
+    }
+    .timeline-item h4 { font-size: 16px; font-weight: 700; color: #a78bfa; margin-bottom: 6px; }
+    .timeline-item .time-tag {
+      font-size: 11px; color: var(--accent2); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+    }
+
+    /* ─── STEPS ─── */
+    .step {
+      display: flex; gap: 16px; margin-bottom: 20px;
+      background: var(--surface); border-radius: 12px;
+      padding: 16px; border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+    }
+    .step-num {
+      flex-shrink: 0; width: 36px; height: 36px;
+      background: var(--gradient1); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 16px; color: #fff;
+    }
+    .step-content h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .step-content p { font-size: 13px; color: var(--text2); }
+
+    /* ─── LINK BUTTON ─── */
+    .link-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 8px;
+      font-size: 13px; font-weight: 600; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      margin: 4px;
+    }
+    .link-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .link-btn-purple { background: rgba(124,58,237,0.2); color: #a78bfa; border: 1px solid rgba(124,58,237,0.4); }
+    .link-btn-cyan   { background: rgba(6,182,212,0.2);  color: #67e8f9; border: 1px solid rgba(6,182,212,0.4); }
+    .link-btn-green  { background: rgba(16,185,129,0.2); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.4); }
+    .link-btn-amber  { background: rgba(245,158,11,0.2); color: #fcd34d; border: 1px solid rgba(245,158,11,0.4); }
+
+    /* ─── CHECKLIST ─── */
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 14px;
+    }
+    .checklist li::before { content: '☐'; color: var(--accent); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ─── MONTH TABLE ─── */
+    .month-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px;
+      position: relative;
+    }
+    .month-label {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 6px;
+    }
+    .month-title { font-size: 16px; font-weight: 800; margin-bottom: 10px; }
+    .month-tasks { font-size: 13px; color: var(--text2); }
+    .month-tasks li { margin-bottom: 4px; list-style: none; padding-left: 16px; position: relative; }
+    .month-tasks li::before { content: '→'; position: absolute; left: 0; color: var(--accent2); }
+
+    /* ─── SALARY LADDER ─── */
+    .ladder { display: flex; flex-direction: column; gap: 0; }
+    .ladder-rung {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 20px;
+      border-left: 4px solid;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .ladder-rung:first-child { border-radius: 12px 12px 0 0; }
+    .ladder-rung:last-child  { border-radius: 0 0 12px 12px; }
+    .ladder-rung:hover { background: var(--surface2); }
+    .rung-year { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text3); width: 80px; flex-shrink: 0; }
+    .rung-amount { font-size: 20px; font-weight: 900; flex-shrink: 0; width: 130px; }
+    .rung-desc { font-size: 13px; color: var(--text2); }
+
+    /* ─── CALLOUT ─── */
+    .callout {
+      border-radius: 12px; padding: 18px 20px; margin: 16px 0;
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .callout-icon { font-size: 22px; flex-shrink: 0; }
+    .callout-title { font-weight: 700; margin-bottom: 4px; }
+    .callout-text  { font-size: 13px; }
+    .callout-warning { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); }
+    .callout-info    { background: rgba(6,182,212,0.1);  border: 1px solid rgba(6,182,212,0.3); }
+    .callout-success { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); }
+    .callout-danger  { background: rgba(239,68,68,0.1);  border: 1px solid rgba(239,68,68,0.3); }
+
+    /* ─── CODE BLOCK ─── */
+    .code-block {
+      background: #0d1117; border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px 20px; margin: 12px 0;
+      font-family: 'Fira Code', monospace; font-size: 13px;
+      color: #79c0ff; overflow-x: auto; line-height: 1.8;
+    }
+    .code-comment { color: #8b949e; }
+    .code-string  { color: #a5d6ff; }
+    .code-keyword { color: #ff7b72; }
+
+    /* ─── ABROAD SECTION ─── */
+    .country-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px;
+      border-top: 3px solid;
+    }
+    .country-flag { font-size: 32px; margin-bottom: 10px; }
+    .country-name { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+    .country-salary { font-size: 14px; margin-bottom: 12px; }
+    .country-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 40px 0;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      text-align: center; padding: 40px 24px;
+      color: var(--text3); font-size: 13px;
+    }
+    footer .footer-title { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+
+    /* ─── PILL ─── */
+    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 600; }
+
+    /* skills grid */
+    .skill-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .skill-icon { font-size: 20px; }
+    .skill-name { font-weight: 700; font-size: 14px; }
+    .skill-time { font-size: 11px; color: var(--text3); }
+
+    /* progress bars */
+    .progress-bar { background: var(--surface2); border-radius: 50px; height: 8px; overflow: hidden; margin-top: 4px; }
+    .progress-fill { height: 100%; border-radius: 50px; }
+
+    h2 { font-size: 22px; }
+    h3 { font-size: 17px; }
+
+    .tag { display: inline-block; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px; font-size: 12px; color: var(--text2); margin: 2px; }
+  </style>
+</head>
+<body>
+
+<!-- Print Button -->
+<button class="print-btn no-print" onclick="window.print()">🖨️ Save as PDF</button>
+
+<!-- ═══════════════════════════════════════════════ HERO ══ -->
+<div class="hero">
+  <div class="hero-badge">🎓 MHT-CET 68 Percentile → AI/ML B.Tech → ₹1 Crore</div>
+  <h1>Zero to ₹1 Crore Placement<br/>Complete Roadmap 2026–2030</h1>
+  <p>Step-by-step guide with exact timings, all resource links, abroad journey, and 100% placement strategy for Tier-3 college students</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">4</div><div class="label">Years Plan</div></div>
+    <div class="hero-stat"><div class="num">₹1Cr+</div><div class="label">Target Package</div></div>
+    <div class="hero-stat"><div class="num">100+</div><div class="label">Resources</div></div>
+    <div class="hero-stat"><div class="num">5</div><div class="label">Countries</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ═══════════════════════════════ SECTION 0: MINDSET ══ -->
+  <div class="section-header" style="margin-top:30px">
+    <div class="section-icon" style="background:rgba(124,58,237,0.15); border:1px solid rgba(124,58,237,0.3)">🧠</div>
+    <div><h2 style="background:var(--gradient4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">The Ground Truth</h2><p>What actually separates ₹5 LPA from ₹1 Crore</p></div>
+  </div>
+
+  <div class="callout callout-success">
+    <span class="callout-icon">💡</span>
+    <div>
+      <div class="callout-title">The Secret Nobody Tells You</div>
+      <div class="callout-text">Hundreds of students from Tier-3 colleges crack Google, Microsoft, Amazon every year. The only difference between them and others: <strong>they started building in Year 1, not Year 3</strong>. Your college gives you a degree. Your <strong>GitHub, projects, and consistency</strong> give you the package.</div>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card" style="border-color:rgba(124,58,237,0.3)">
+      <div style="font-size:28px;margin-bottom:8px">🏫</div>
+      <h3 style="color:#a78bfa">Tier-3 Student Reality</h3>
+      <p style="color:var(--text2);font-size:13px">No on-campus Google recruiters. You must <strong>go off-campus</strong>, build your brand online, and get referrals. Harder path — but same destination.</p>
+    </div>
+    <div class="card" style="border-color:rgba(6,182,212,0.3)">
+      <div style="font-size:28px;margin-bottom:8px">⚔️</div>
+      <h3 style="color:#67e8f9">Your Weapons</h3>
+      <p style="color:var(--text2);font-size:13px">GitHub profile, LinkedIn presence, real projects, hackathon wins, certifications, and <strong>DSA skills</strong>. These level the playing field completely.</p>
+    </div>
+    <div class="card" style="border-color:rgba(16,185,129,0.3)">
+      <div style="font-size:28px;margin-bottom:8px">🎯</div>
+      <h3 style="color:#6ee7b7">The Formula</h3>
+      <p style="color:var(--text2);font-size:13px">Strong DSA + 5 real projects + 2 internships + active GitHub + hackathon wins = <strong>crackable dream job</strong> from any college.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION 1: TOOLS ══ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.3)">🛠️</div>
+    <div><h2 style="background:var(--gradient2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Your 3 Core Digital Tools</h2><p>Set these up in Week 1 — they're your permanent career identity</p></div>
+  </div>
+
+  <!-- GitHub -->
+  <div class="card" style="border-color:rgba(124,58,237,0.3);border-left:4px solid #7c3aed">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+      <div style="font-size:36px">🐙</div>
+      <div>
+        <h3 style="font-size:20px">GitHub — Your Code Identity</h3>
+        <p style="color:var(--text2);font-size:13px">Recruiter Googles your name → sees GitHub → decides in 30 seconds</p>
+      </div>
+      <a href="https://github.com" class="link-btn link-btn-purple" style="margin-left:auto" target="_blank">→ github.com</a>
+    </div>
+
+    <div class="callout callout-warning" style="margin-bottom:16px">
+      <span class="callout-icon">⚠️</span>
+      <div><div class="callout-title">Do This in Week 1 of College</div><div class="callout-text">Create your account using a professional username like <strong>firstname-lastname</strong> (e.g., vaibhav-kale). This username becomes your brand.</div></div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <h4 style="margin-bottom:10px;color:#a78bfa">🔧 Setup Steps (Day 1)</h4>
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-dot"></div><div class="time-tag">Step 1</div><h4>Create Account</h4><p style="font-size:13px;color:var(--text2)">Go to <a href="https://github.com" style="color:#67e8f9">github.com</a> → Sign Up → Use professional username</p></div>
+          <div class="timeline-item"><div class="timeline-dot"></div><div class="time-tag">Step 2</div><h4>Install Git</h4><p style="font-size:13px;color:var(--text2)">Download from <a href="https://git-scm.com" style="color:#67e8f9">git-scm.com</a> → Install on your laptop</p></div>
+          <div class="timeline-item"><div class="timeline-dot"></div><div class="time-tag">Step 3</div><h4>Profile README</h4><p style="font-size:13px;color:var(--text2)">Create repo named exactly as your username → Add attractive bio using <a href="https://github.com/abhisheknaiidu/awesome-github-profile-readme" style="color:#67e8f9">templates here</a></p></div>
+          <div class="timeline-item"><div class="timeline-dot"></div><div class="time-tag">Step 4</div><h4>Daily Green Squares</h4><p style="font-size:13px;color:var(--text2)">Commit code EVERY day — even 1 line counts. 365-day streak = extremely impressive</p></div>
+        </div>
+      </div>
+      <div>
+        <h4 style="margin-bottom:10px;color:#a78bfa">📋 Essential Git Commands</h4>
+        <div class="code-block">
+<span class="code-comment"># Setup (one time only)</span>
+git config --global user.name "Your Name"
+git config --global user.email "you@gmail.com"
+
+<span class="code-comment"># For every project</span>
+<span class="code-keyword">git init</span>          <span class="code-comment">→ start tracking</span>
+<span class="code-keyword">git add .</span>         <span class="code-comment">→ stage all files</span>
+<span class="code-keyword">git commit -m ""</span>  <span class="code-comment">→ save snapshot</span>
+<span class="code-keyword">git push</span>          <span class="code-comment">→ upload to GitHub</span>
+
+<span class="code-comment"># Cloning someone's project</span>
+<span class="code-keyword">git clone</span> [url]
+        </div>
+        <div class="callout callout-info">
+          <span class="callout-icon">📚</span>
+          <div><div class="callout-title">Learn Git</div><div class="callout-text"><a href="https://www.youtube.com/watch?v=apGV9Kg7ics" style="color:#67e8f9">Git Tutorial by Kunal Kushwaha (YouTube)</a><br/><a href="https://learngitbranching.js.org" style="color:#67e8f9">Interactive Git: learngitbranching.js.org</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <h4 style="margin-top:20px;margin-bottom:12px;color:#a78bfa">✅ GitHub Profile Checklist (By End of Month 1)</h4>
+    <ul class="checklist">
+      <li>Professional profile photo (not cartoon/meme — real photo)</li>
+      <li>Bio: "AI/ML Student | Python | Building real projects | B.Tech 2030"</li>
+      <li>Location: Maharashtra, India</li>
+      <li>At least 3 pinned repositories (your best projects)</li>
+      <li>Every repo has a README.md explaining what it does + how to run</li>
+      <li>Green activity squares showing daily commits</li>
+    </ul>
+  </div>
+
+  <!-- LinkedIn -->
+  <div class="card" style="border-color:rgba(6,182,212,0.3);border-left:4px solid #06b6d4">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+      <div style="font-size:36px">💼</div>
+      <div>
+        <h3 style="font-size:20px">LinkedIn — Your Professional Brand</h3>
+        <p style="color:var(--text2);font-size:13px">87% of recruiters use LinkedIn. FAANG recruiters cold message people here directly</p>
+      </div>
+      <a href="https://linkedin.com" class="link-btn link-btn-cyan" style="margin-left:auto" target="_blank">→ linkedin.com</a>
+    </div>
+
+    <table>
+      <thead><tr><th>Section</th><th>What to Write (Exact)</th><th>When</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Headline</strong></td><td>"AI/ML Enthusiast | Python | Building real-world projects | Open to Internships 2027"</td><td>Day 1</td></tr>
+        <tr><td><strong>About</strong></td><td>"1st year B.Tech CSE (AI/ML) student passionate about solving real problems with machine learning. Currently learning Python, NumPy, Pandas. Building projects. Open to internship opportunities. Let's connect!"</td><td>Day 1</td></tr>
+        <tr><td><strong>Skills</strong></td><td>Python, Machine Learning, Deep Learning, SQL, Git, Data Analysis</td><td>Day 1</td></tr>
+        <tr><td><strong>Education</strong></td><td>Your college name, B.Tech CSE (AI & ML), 2026–2030</td><td>Day 1</td></tr>
+        <tr><td><strong>Projects</strong></td><td>Add every project with: what it does + tech used + GitHub link</td><td>As you build</td></tr>
+        <tr><td><strong>Certifications</strong></td><td>Add every Kaggle/Coursera/Google cert with date</td><td>As you earn</td></tr>
+        <tr><td><strong>Open to Work</strong></td><td>Turn ON → Select "Internship" → Visible to All</td><td>Month 3+</td></tr>
+      </tbody>
+    </table>
+
+    <h4 style="margin-top:20px;margin-bottom:12px;color:#67e8f9">📅 LinkedIn Weekly Habits</h4>
+    <div class="grid-3">
+      <div class="month-card"><div class="month-label" style="color:#06b6d4">Monday</div><div class="month-title">Connect</div><ul class="month-tasks"><li>Add 5 new people (alumni, seniors, professionals)</li></ul></div>
+      <div class="month-card"><div class="month-label" style="color:#06b6d4">Wednesday</div><div class="month-title">Post</div><ul class="month-tasks"><li>Share what you learned this week ("Today I learned...")</li></ul></div>
+      <div class="month-card"><div class="month-label" style="color:#06b6d4">Friday</div><div class="month-title">Engage</div><ul class="month-tasks"><li>Comment on 3 posts by people at dream companies</li></ul></div>
+    </div>
+
+    <div class="callout callout-success" style="margin-top:16px">
+      <span class="callout-icon">🔑</span>
+      <div><div class="callout-title">Cold Message Template for Referrals (Year 3–4)</div><div class="callout-text">"Hi [Name], I'm a final year B.Tech student specializing in AI/ML. I've built [X projects], won [Y hackathon], and completed internship at [Z]. I admire [Company]'s work on [specific thing]. Would you be open to a 10-min chat? I'd also appreciate if you could refer me for the [Role] position if you find my profile suitable. No pressure at all. Thank you!"</div></div>
+    </div>
+  </div>
+
+  <!-- Portfolio -->
+  <div class="card" style="border-color:rgba(16,185,129,0.3);border-left:4px solid #10b981">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+      <div style="font-size:36px">🌐</div>
+      <div>
+        <h3 style="font-size:20px">Portfolio Website — Your Living Resume</h3>
+        <p style="color:var(--text2);font-size:13px">A website showing all your work. Recruiters can see your projects instantly — without downloading anything</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <h4 style="margin-bottom:10px;color:#6ee7b7">Must-Have Sections:</h4>
+        <ul class="checklist">
+          <li>Hero section: Name, role, tagline, photo</li>
+          <li>About Me: 3 lines + your passion</li>
+          <li>Skills: icons with logos (Python, TensorFlow etc.)</li>
+          <li>Projects: Cards with image, description, live link + GitHub link</li>
+          <li>Experience: Internships + part-time work</li>
+          <li>Certifications: With badges/images</li>
+          <li>Contact: Email + LinkedIn + GitHub</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin-bottom:10px;color:#6ee7b7">Free Tools to Build It:</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <a href="https://github.com/topics/portfolio-template" class="link-btn link-btn-green" target="_blank">GitHub Templates</a>
+          <a href="https://pages.github.com" class="link-btn link-btn-green" target="_blank">GitHub Pages (Free Host)</a>
+          <a href="https://vercel.com" class="link-btn link-btn-green" target="_blank">Vercel (Free Host)</a>
+          <a href="https://netlify.com" class="link-btn link-btn-green" target="_blank">Netlify (Free Host)</a>
+          <a href="https://www.canva.com" class="link-btn link-btn-green" target="_blank">Canva (Design)</a>
+        </div>
+        <div class="callout callout-info" style="margin-top:12px">
+          <span class="callout-icon">📌</span>
+          <div><div class="callout-title">When to Build It</div><div class="callout-text">Build basic version in <strong>Month 3 of Year 1</strong>. Upgrade every semester with new projects. Your URL: <strong>yourname.github.io</strong></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION 2: LANGUAGES ══ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.3)">💻</div>
+    <div><h2 style="background:var(--gradient3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">What to Learn & When — Exact Order</h2><p>Languages, tools, frameworks — with precise timing and resource links</p></div>
+  </div>
+
+  <div class="callout callout-danger">
+    <span class="callout-icon">🚫</span>
+    <div><div class="callout-title">Common Mistake: Don't Learn Everything at Once</div><div class="callout-text">Many students learn 5 languages in Year 1 and master none. Follow this <strong>strict order</strong>. Move to next only when you can build a project in the current one.</div></div>
+  </div>
+
+  <div class="grid-2">
+    <!-- Python -->
+    <div class="skill-item" style="border-color:rgba(245,158,11,0.4);flex-direction:column;align-items:flex-start;padding:20px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <span style="font-size:28px">🐍</span>
+        <div>
+          <div class="skill-name" style="font-size:18px">Python</div>
+          <div class="skill-time">Aug–Oct Year 1 (3 months) • MOST IMPORTANT</div>
+        </div>
+        <span class="badge badge-amber" style="margin-left:auto">Start Here</span>
+      </div>
+      <div class="progress-bar" style="width:100%"><div class="progress-fill" style="width:100%;background:linear-gradient(to right,#f59e0b,#ef4444)"></div></div>
+      <p style="color:var(--text2);font-size:13px;margin-top:10px">The language of AI/ML. Everything runs on Python. Master this before touching ML.</p>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+        <a href="https://www.youtube.com/c/CodeWithHarry" class="link-btn link-btn-amber" target="_blank">CodeWithHarry (Hindi)</a>
+        <a href="https://cs50.harvard.edu/python/2022/" class="link-btn link-btn-amber" target="_blank">Harvard CS50P (Free)</a>
+        <a href="https://www.kaggle.com/learn/python" class="link-btn link-btn-amber" target="_blank">Kaggle Python</a>
+      </div>
+    </div>
+
+    <!-- DSA -->
+    <div class="skill-item" style="border-color:rgba(239,68,68,0.4);flex-direction:column;align-items:flex-start;padding:20px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <span style="font-size:28px">🧩</span>
+        <div>
+          <div class="skill-name" style="font-size:18px">DSA (Data Structures & Algorithms)</div>
+          <div class="skill-time">Nov Year 1 → Throughout all 4 years</div>
+        </div>
+        <span class="badge badge-red" style="margin-left:auto">CRITICAL</span>
+      </div>
+      <div class="progress-bar" style="width:100%"><div class="progress-fill" style="width:100%;background:linear-gradient(to right,#ef4444,#ec4899)"></div></div>
+      <p style="color:var(--text2);font-size:13px;margin-top:10px">Every company from ₹10L to ₹1Cr asks DSA. No DSA = No job. Practice on LeetCode daily.</p>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+        <a href="https://leetcode.com" class="link-btn link-btn-purple" target="_blank">LeetCode</a>
+        <a href="https://www.youtube.com/c/takeUforward" class="link-btn link-btn-purple" target="_blank">Striver's A2Z DSA</a>
+        <a href="https://www.geeksforgeeks.org" class="link-btn link-btn-purple" target="_blank">GeeksForGeeks</a>
+        <a href="https://neetcode.io" class="link-btn link-btn-purple" target="_blank">NeetCode (Best)</a>
+      </div>
+    </div>
+
+    <!-- SQL -->
+    <div class="skill-item" style="border-color:rgba(6,182,212,0.4);flex-direction:column;align-items:flex-start;padding:20px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <span style="font-size:28px">🗄️</span>
+        <div>
+          <div class="skill-name" style="font-size:18px">SQL</div>
+          <div class="skill-time">Dec Year 1 – Jan Year 2 (2 months)</div>
+        </div>
+        <span class="badge badge-cyan" style="margin-left:auto">Year 1</span>
+      </div>
+      <div class="progress-bar" style="width:100%"><div class="progress-fill" style="width:70%;background:linear-gradient(to right,#06b6d4,#3b82f6)"></div></div>
+      <p style="color:var(--text2);font-size:13px;margin-top:10px">All ML data lives in databases. SQL is asked in every data science interview.</p>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+        <a href="https://www.w3schools.com/sql/" class="link-btn link-btn-cyan" target="_blank">W3Schools SQL</a>
+        <a href="https://www.kaggle.com/learn/intro-to-sql" class="link-btn link-btn-cyan" target="_blank">Kaggle SQL</a>
+        <a href="https://sqlzoo.net" class="link-btn link-btn-cyan" target="_blank">SQLZoo Practice</a>
+      </div>
+    </div>
+
+    <!-- ML -->
+    <div class="skill-item" style="border-color:rgba(16,185,129,0.4);flex-direction:column;align-items:flex-start;padding:20px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <span style="font-size:28px">🤖</span>
+        <div>
+          <div class="skill-name" style="font-size:18px">Machine Learning</div>
+          <div class="skill-time">Feb Year 2 – Jun Year 2 (5 months)</div>
+        </div>
+        <span class="badge badge-green" style="margin-left:auto">Year 2</span>
+      </div>
+      <div class="progress-bar" style="width:100%"><div class="progress-fill" style="width:80%;background:linear-gradient(to right,#10b981,#06b6d4)"></div></div>
+      <p style="color:var(--text2);font-size:13px;margin-top:10px">Scikit-learn, linear regression, classification, clustering. The core of your branch.</p>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+        <a href="https://www.coursera.org/specializations/machine-learning-introduction" class="link-btn link-btn-green" target="_blank">Andrew Ng ML Course</a>
+        <a href="https://www.fast.ai" class="link-btn link-btn-green" target="_blank">fast.ai (Free)</a>
+        <a href="https://www.kaggle.com/learn" class="link-btn link-btn-green" target="_blank">Kaggle Learn</a>
+      </div>
+    </div>
+
+    <!-- Deep Learning -->
+    <div class="skill-item" style="border-color:rgba(124,58,237,0.4);flex-direction:column;align-items:flex-start;padding:20px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <span style="font-size:28px">🧠</span>
+        <div>
+          <div class="skill-name" style="font-size:18px">Deep Learning (TensorFlow / PyTorch)</div>
+          <div class="skill-time">Jul Year 2 – Dec Year 2 (6 months)</div>
+        </div>
+        <span class="badge badge-purple" style="margin-left:auto">Year 2</span>
+      </div>
+      <div class="progress-bar" style="width:100%"><div class="progress-fill" style="width:75%;background:linear-gradient(to right,#7c3aed,#ec4899)"></div></div>
+      <p style="color:var(--text2);font-size:13px;margin-top:10px">Neural networks, CNNs, RNNs, Transformers. The high-paying stuff is here.</p>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+        <a href="https://www.youtube.com/c/AndrejKarpathy" class="link-btn link-btn-purple" target="_blank">Andrej Karpathy (YouTube)</a>
+        <a href="https://pytorch.org/tutorials/" class="link-btn link-btn-purple" target="_blank">PyTorch Tutorials</a>
+        <a href="https://www.deeplearning.ai" class="link-btn link-btn-purple" target="_blank">deeplearning.ai</a>
+      </div>
+    </div>
+
+    <!-- Cloud + MLOps -->
+    <div class="skill-item" style="border-color:rgba(245,158,11,0.4);flex-direction:column;align-items:flex-start;padding:20px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <span style="font-size:28px">☁️</span>
+        <div>
+          <div class="skill-name" style="font-size:18px">Cloud + MLOps (AWS / GCP)</div>
+          <div class="skill-time">Year 3 Semester 1 (4 months)</div>
+        </div>
+        <span class="badge badge-amber" style="margin-left:auto">Year 3</span>
+      </div>
+      <div class="progress-bar" style="width:100%"><div class="progress-fill" style="width:60%;background:linear-gradient(to right,#f59e0b,#10b981)"></div></div>
+      <p style="color:var(--text2);font-size:13px;margin-top:10px">Deploy ML models on cloud. Highest paying niche with least competition in India.</p>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+        <a href="https://aws.amazon.com/training/digital/" class="link-btn link-btn-amber" target="_blank">AWS Free Training</a>
+        <a href="https://cloud.google.com/training" class="link-btn link-btn-amber" target="_blank">Google Cloud Training</a>
+        <a href="https://mlflow.org" class="link-btn link-btn-amber" target="_blank">MLflow</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LLMs -->
+  <div class="card" style="border:2px solid rgba(124,58,237,0.5);background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(6,182,212,0.05))">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+      <span style="font-size:36px">✨</span>
+      <div>
+        <h3 style="background:var(--gradient1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Generative AI & LLMs — The ₹1 Crore Skill</h3>
+        <p style="color:var(--text2);font-size:13px">Year 3–4 | The hottest field in 2026–2030 | Companies paying ₹50L–1.5Cr for this</p>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <a href="https://huggingface.co/learn" class="link-btn link-btn-purple" target="_blank">Hugging Face Learn</a>
+      <a href="https://python.langchain.com" class="link-btn link-btn-cyan" target="_blank">LangChain Docs</a>
+      <a href="https://platform.openai.com/docs" class="link-btn link-btn-green" target="_blank">OpenAI API Docs</a>
+      <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY" class="link-btn link-btn-purple" target="_blank">Build GPT from Scratch</a>
+      <a href="https://paperswithcode.com" class="link-btn link-btn-amber" target="_blank">Papers With Code</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION 3: YEAR-BY-YEAR ══ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3)">📅</div>
+    <div><h2 style="background:var(--gradient2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">4-Year Month-by-Month Master Plan</h2><p>Exactly what to do, when to do it</p></div>
+  </div>
+
+  <!-- YEAR 1 -->
+  <div style="border:1px solid rgba(245,158,11,0.3);border-radius:20px;overflow:hidden;margin-bottom:30px">
+    <div style="background:linear-gradient(135deg,rgba(245,158,11,0.2),rgba(239,68,68,0.1));padding:20px 24px;display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(245,158,11,0.2)">
+      <span style="font-size:40px">🌱</span>
+      <div>
+        <h3 style="font-size:22px;color:#fcd34d">YEAR 1 — Build the Foundation</h3>
+        <p style="color:var(--text2)">Aug 2026 – Jun 2027 | Goal: Learn Python, get first internship, set up digital presence</p>
+      </div>
+    </div>
+    <div style="padding:24px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px">
+        <div class="month-card" style="border-top:3px solid #f59e0b">
+          <div class="month-label" style="color:#f59e0b">August – September</div>
+          <div class="month-title">Python Basics</div>
+          <ul class="month-tasks">
+            <li>Install Python + VS Code</li>
+            <li>Complete CodeWithHarry Python series</li>
+            <li>Create GitHub account</li>
+            <li>Create LinkedIn profile</li>
+            <li>Build Calculator project</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #f59e0b">
+          <div class="month-label" style="color:#f59e0b">October</div>
+          <div class="month-title">Python Libraries</div>
+          <ul class="month-tasks">
+            <li>Learn NumPy basics</li>
+            <li>Learn Pandas (DataFrames)</li>
+            <li>Analyze 2 CSV datasets on Kaggle</li>
+            <li>Push projects to GitHub</li>
+            <li>Earn Kaggle Python Certificate</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #f59e0b">
+          <div class="month-label" style="color:#f59e0b">November</div>
+          <div class="month-title">Visualization + EDA</div>
+          <ul class="month-tasks">
+            <li>Matplotlib + Seaborn</li>
+            <li>Exploratory Data Analysis</li>
+            <li>Submit first Kaggle notebook publicly</li>
+            <li>50 LinkedIn connections</li>
+            <li>Start DSA: Arrays & Strings</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #f59e0b">
+          <div class="month-label" style="color:#f59e0b">December</div>
+          <div class="month-title">Git + Portfolio</div>
+          <ul class="month-tasks">
+            <li>Master Git (commit, push, pull)</li>
+            <li>3 complete projects on GitHub</li>
+            <li>Build basic portfolio website</li>
+            <li>Apply to 10 internships (Internshala)</li>
+            <li>Solve 20 LeetCode Easy</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #f59e0b">
+          <div class="month-label" style="color:#f59e0b">January – February</div>
+          <div class="month-title">First ML Model + SQL</div>
+          <ul class="month-tasks">
+            <li>Andrew Ng ML Course (audit free)</li>
+            <li>Learn SQL basics (W3Schools)</li>
+            <li>Build Student Grade Predictor (ML)</li>
+            <li>Apply to 30 more internships</li>
+            <li>200+ LinkedIn connections</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #f59e0b">
+          <div class="month-label" style="color:#f59e0b">March – April</div>
+          <div class="month-title">First Hackathon + Resume</div>
+          <ul class="month-tasks">
+            <li>Register on Unstop.com</li>
+            <li>Participate in first hackathon</li>
+            <li>Make 1-page resume (Overleaf)</li>
+            <li>Apply to SIH (Smart India Hackathon)</li>
+            <li>Earn Kaggle Pandas Certificate</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #f59e0b">
+          <div class="month-label" style="color:#f59e0b">May – June (Summer)</div>
+          <div class="month-title">FIRST INTERNSHIP 🎉</div>
+          <ul class="month-tasks">
+            <li>Complete 1–2 month remote internship</li>
+            <li>Learn from real industry code</li>
+            <li>Add to LinkedIn + resume</li>
+            <li>Write a LinkedIn post about what you learned</li>
+            <li>Earn Google Python Certificate</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #f59e0b">
+          <div class="month-label" style="color:#f59e0b">July – August</div>
+          <div class="month-title">Review + Plan Year 2</div>
+          <ul class="month-tasks">
+            <li>Review all Year 1 learnings</li>
+            <li>Update GitHub + LinkedIn + Portfolio</li>
+            <li>Start Deep Learning basics</li>
+            <li>Solve 30 more LeetCode problems</li>
+            <li>Plan Year 2 goals in writing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YEAR 2 -->
+  <div style="border:1px solid rgba(6,182,212,0.3);border-radius:20px;overflow:hidden;margin-bottom:30px">
+    <div style="background:linear-gradient(135deg,rgba(6,182,212,0.2),rgba(59,130,246,0.1));padding:20px 24px;display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(6,182,212,0.2)">
+      <span style="font-size:40px">🚀</span>
+      <div>
+        <h3 style="font-size:22px;color:#67e8f9">YEAR 2 — Build Real Things</h3>
+        <p style="color:var(--text2)">Aug 2027 – Jun 2028 | Goal: Master ML/DL, win hackathons, get paid internship ₹20k+</p>
+      </div>
+    </div>
+    <div style="padding:24px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px">
+        <div class="month-card" style="border-top:3px solid #06b6d4">
+          <div class="month-label" style="color:#06b6d4">Aug – Sep (Sem 3)</div>
+          <div class="month-title">Machine Learning Deep Dive</div>
+          <ul class="month-tasks">
+            <li>Complete Andrew Ng ML Specialization</li>
+            <li>Learn Scikit-learn fully</li>
+            <li>Classification + Regression + Clustering</li>
+            <li>100 LeetCode problems total</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #06b6d4">
+          <div class="month-label" style="color:#06b6d4">Oct – Nov</div>
+          <div class="month-title">Deep Learning + CNN</div>
+          <ul class="month-tasks">
+            <li>Start TensorFlow / Keras</li>
+            <li>Build Image Classifier (CNN)</li>
+            <li>Deploy on Streamlit (free)</li>
+            <li>Participate in Kaggle competition</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #06b6d4">
+          <div class="month-label" style="color:#06b6d4">December</div>
+          <div class="month-title">NLP Basics + Hackathon</div>
+          <ul class="month-tasks">
+            <li>Sentiment Analysis project</li>
+            <li>Participate in Smart India Hackathon</li>
+            <li>Apply to Amazon ML Challenge</li>
+            <li>150 LeetCode problems total</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #06b6d4">
+          <div class="month-label" style="color:#06b6d4">Jan – Feb (Sem 4)</div>
+          <div class="month-title">PyTorch + APIs</div>
+          <ul class="month-tasks">
+            <li>Switch to PyTorch (industry standard)</li>
+            <li>Learn Flask / FastAPI</li>
+            <li>Deploy ML model as REST API</li>
+            <li>Google Solution Challenge submission</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #06b6d4">
+          <div class="month-label" style="color:#06b6d4">March – April</div>
+          <div class="month-title">Cloud + Advanced Projects</div>
+          <ul class="month-tasks">
+            <li>AWS Free Tier account setup</li>
+            <li>Deploy project on AWS EC2</li>
+            <li>Disease Detection project</li>
+            <li>Apply to 50+ internships</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #06b6d4">
+          <div class="month-label" style="color:#06b6d4">May – July (Summer)</div>
+          <div class="month-title">PAID INTERNSHIP ₹20k+ 🎉</div>
+          <ul class="month-tasks">
+            <li>2–3 month summer internship</li>
+            <li>₹15,000–40,000/month stipend</li>
+            <li>Work on real industry ML projects</li>
+            <li>Aim for PPO (Pre-Placement Offer)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YEAR 3 -->
+  <div style="border:1px solid rgba(124,58,237,0.3);border-radius:20px;overflow:hidden;margin-bottom:30px">
+    <div style="background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(236,72,153,0.1));padding:20px 24px;display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(124,58,237,0.2)">
+      <span style="font-size:40px">⚡</span>
+      <div>
+        <h3 style="font-size:22px;color:#a78bfa">YEAR 3 — Go Advanced</h3>
+        <p style="color:var(--text2)">Aug 2028 – Jun 2029 | Goal: Specialize, open source, research, high-paying internship ₹50k+</p>
+      </div>
+    </div>
+    <div style="padding:24px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px">
+        <div class="month-card" style="border-top:3px solid #7c3aed">
+          <div class="month-label" style="color:#a78bfa">Aug – Sep</div>
+          <div class="month-title">Pick Your Specialization</div>
+          <ul class="month-tasks">
+            <li>Choose: NLP / CV / MLOps / GenAI</li>
+            <li>Deep dive into chosen area</li>
+            <li>Read 2 research papers per week</li>
+            <li>Start contributing to open source</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #7c3aed">
+          <div class="month-label" style="color:#a78bfa">Oct – Nov</div>
+          <div class="month-title">LLMs + Hugging Face</div>
+          <ul class="month-tasks">
+            <li>Fine-tune a pre-trained model</li>
+            <li>Build RAG (Retrieval Augmented Gen) app</li>
+            <li>Use LangChain + OpenAI API</li>
+            <li>250 LeetCode problems total</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #7c3aed">
+          <div class="month-label" style="color:#a78bfa">Dec – Jan</div>
+          <div class="month-title">MLOps + Docker</div>
+          <ul class="month-tasks">
+            <li>Containerize ML app with Docker</li>
+            <li>MLflow experiment tracking</li>
+            <li>CI/CD pipeline basics (GitHub Actions)</li>
+            <li>AWS SageMaker tutorial</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #7c3aed">
+          <div class="month-label" style="color:#a78bfa">Feb – Mar</div>
+          <div class="month-title">Research Paper</div>
+          <ul class="month-tasks">
+            <li>Work with professor on research</li>
+            <li>Submit to ICML / NeurIPS / AAAI</li>
+            <li>Upload to arXiv.org</li>
+            <li>Reach Kaggle Expert rank</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #7c3aed">
+          <div class="month-label" style="color:#a78bfa">Apr – May</div>
+          <div class="month-title">System Design</div>
+          <ul class="month-tasks">
+            <li>Learn system design basics</li>
+            <li>Watch Gaurav Sen YouTube series</li>
+            <li>Design Netflix/Instagram clone on paper</li>
+            <li>Apply to FAANG internships</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #7c3aed">
+          <div class="month-label" style="color:#a78bfa">May – Jul (Summer)</div>
+          <div class="month-title">HIGH-PAYING INTERNSHIP ₹50k+ 🏆</div>
+          <ul class="month-tasks">
+            <li>Samsung R&D / Nvidia / Microsoft internship</li>
+            <li>₹40,000–80,000/month stipend</li>
+            <li>Push for PPO (direct job offer)</li>
+            <li>This changes everything on your resume</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YEAR 4 -->
+  <div style="border:2px solid rgba(251,191,36,0.4);border-radius:20px;overflow:hidden;margin-bottom:30px">
+    <div style="background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(245,158,11,0.1));padding:20px 24px;display:flex;align-items:center;gap:14px;border-bottom:2px solid rgba(251,191,36,0.2)">
+      <span style="font-size:40px">👑</span>
+      <div>
+        <h3 style="font-size:22px;color:#fbbf24">YEAR 4 — PLACEMENT SEASON</h3>
+        <p style="color:var(--text2)">Aug 2029 – May 2030 | Goal: Crack dream company, negotiate ₹20–60 LPA offer</p>
+      </div>
+    </div>
+    <div style="padding:24px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px">
+        <div class="month-card" style="border-top:3px solid #fbbf24">
+          <div class="month-label" style="color:#fbbf24">Aug – Sep</div>
+          <div class="month-title">DSA Blitz</div>
+          <ul class="month-tasks">
+            <li>Solve 300+ LeetCode problems total</li>
+            <li>Striver's SDE Sheet (180 problems)</li>
+            <li>Company-specific tags (Amazon, Google)</li>
+            <li>Mock interviews with friends daily</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #fbbf24">
+          <div class="month-label" style="color:#fbbf24">Oct</div>
+          <div class="month-title">ML Interview Prep</div>
+          <ul class="month-tasks">
+            <li>Statistics & Probability revision</li>
+            <li>ML concepts deep revision</li>
+            <li>Practice explaining all your projects</li>
+            <li>Mock ML interviews (Pramp.com)</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #fbbf24">
+          <div class="month-label" style="color:#fbbf24">Nov – Dec</div>
+          <div class="month-title">Apply to Everything</div>
+          <ul class="month-tasks">
+            <li>Apply to 50+ companies off-campus</li>
+            <li>LinkedIn Easy Apply for all ₹15L+ roles</li>
+            <li>Ask seniors for referrals</li>
+            <li>On-campus placements if available</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #fbbf24">
+          <div class="month-label" style="color:#fbbf24">Jan – Feb</div>
+          <div class="month-title">Interview Rounds</div>
+          <ul class="month-tasks">
+            <li>Online Assessments (OA) → clear them</li>
+            <li>Technical rounds 1 & 2</li>
+            <li>ML Case Study round</li>
+            <li>HR + Salary negotiation</li>
+          </ul>
+        </div>
+        <div class="month-card" style="border-top:3px solid #fbbf24">
+          <div class="month-label" style="color:#fbbf24">Mar – May</div>
+          <div class="month-title">OFFER LETTER DAY 🎉</div>
+          <ul class="month-tasks">
+            <li>₹20–60 LPA campus/off-campus offer</li>
+            <li>Negotiate salary (always negotiate!)</li>
+            <li>Compare multiple offers</li>
+            <li>Plan for Year 1–3 job switch strategy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION 4: PROJECTS ══ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3)">🔨</div>
+    <div><h2 style="background:var(--gradient2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Projects to Build — Year-by-Year</h2><p>These specific projects get you noticed by recruiters</p></div>
+  </div>
+
+  <table>
+    <thead><tr><th>Year</th><th>Project</th><th>Tech Used</th><th>Impressiveness</th><th>Where to Show</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge badge-amber">Year 1</span></td><td>Weather App using API</td><td>Python, requests, JSON</td><td>⭐⭐</td><td>GitHub</td></tr>
+      <tr><td><span class="badge badge-amber">Year 1</span></td><td>Data Analysis Dashboard</td><td>Pandas, Matplotlib, Streamlit</td><td>⭐⭐⭐</td><td>GitHub + Streamlit Cloud</td></tr>
+      <tr><td><span class="badge badge-amber">Year 1</span></td><td>Student Grade Predictor</td><td>Scikit-learn, Linear Regression</td><td>⭐⭐⭐</td><td>GitHub + Portfolio</td></tr>
+      <tr><td><span class="badge badge-cyan">Year 2</span></td><td>Image Classifier (Cat vs Dog)</td><td>CNN, TensorFlow, Flask, Deployed</td><td>⭐⭐⭐⭐</td><td>Live URL + GitHub</td></tr>
+      <tr><td><span class="badge badge-cyan">Year 2</span></td><td>Sentiment Analysis Tool</td><td>NLP, BERT, Streamlit</td><td>⭐⭐⭐⭐</td><td>Live Demo + GitHub</td></tr>
+      <tr><td><span class="badge badge-cyan">Year 2</span></td><td>Disease Detection from X-Rays</td><td>CNN, PyTorch, Healthcare data</td><td>⭐⭐⭐⭐⭐</td><td>GitHub + Kaggle</td></tr>
+      <tr><td><span class="badge badge-purple">Year 3</span></td><td>LLM-powered Chatbot for College</td><td>LangChain, RAG, OpenAI, FastAPI</td><td>⭐⭐⭐⭐⭐</td><td>Live + GitHub + LinkedIn Post</td></tr>
+      <tr><td><span class="badge badge-purple">Year 3</span></td><td>Resume Screener using NLP</td><td>BERT, FastAPI, Docker, AWS</td><td>⭐⭐⭐⭐⭐</td><td>Live + GitHub + Blog</td></tr>
+      <tr><td><span class="badge badge-purple">Year 3</span></td><td>Real-time Object Detection App</td><td>YOLO, OpenCV, Streamlit, Cloud</td><td>⭐⭐⭐⭐⭐</td><td>Live Demo + YouTube demo video</td></tr>
+      <tr><td><span class="badge badge-red">Year 4</span></td><td>Fine-tuned LLM on Custom Domain</td><td>LoRA, HuggingFace, GPU, Docker</td><td>💎 Exceptional</td><td>Research paper + GitHub + arXiv</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ═══════════════════════════════ SECTION 5: HACKATHONS ══ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3)">⚡</div>
+    <div><h2 style="background:var(--gradient3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Hackathons — Your Fastest Path to Recognition</h2><p>Companies recruit directly from hackathons and pay massive prizes</p></div>
+  </div>
+
+  <div class="callout callout-success">
+    <span class="callout-icon">🏆</span>
+    <div><div class="callout-title">Why Hackathons Are Non-Negotiable</div><div class="callout-text">A hackathon win or even participation tells recruiters: "This person can build things fast, work in teams, and think under pressure." Infosys, Flipkart, Amazon all conduct hackathons specifically to hire talent directly — bypassing campus recruitment.</div></div>
+  </div>
+
+  <table>
+    <thead><tr><th>Hackathon</th><th>Organizer</th><th>Prize</th><th>When</th><th>Best Year</th><th>Link</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Smart India Hackathon (SIH)</strong></td><td>Govt. of India</td><td>₹1 Lakh</td><td>Aug–Sep annually</td><td>Year 1–4</td><td><a href="https://www.sih.gov.in" style="color:#67e8f9">sih.gov.in</a></td></tr>
+      <tr><td><strong>HackWithInfy</strong></td><td>Infosys</td><td>Job + ₹1L</td><td>Year-round</td><td>Year 2–3</td><td><a href="https://www.infosys.com/hackwithinfy" style="color:#67e8f9">infosys.com</a></td></tr>
+      <tr><td><strong>Flipkart Grid</strong></td><td>Flipkart</td><td>₹5 Lakh</td><td>Annually</td><td>Year 2–4</td><td><a href="https://dare2compete.com/o/Flipkart-GRID-60-Information-Technology-Flipkart-197850" style="color:#67e8f9">Unstop</a></td></tr>
+      <tr><td><strong>Amazon ML Challenge</strong></td><td>Amazon</td><td>₹5L+ + Internship</td><td>Annually</td><td>Year 2–4</td><td><a href="https://www.amazon.science/blog/2023-amazon-ml-challenge" style="color:#67e8f9">amazon.science</a></td></tr>
+      <tr><td><strong>Google Solution Challenge</strong></td><td>Google</td><td>Global prize + trip</td><td>Jan–May annually</td><td>Year 1–4</td><td><a href="https://developers.google.com/community/gdsc-solution-challenge" style="color:#67e8f9">developers.google.com</a></td></tr>
+      <tr><td><strong>Microsoft Imagine Cup</strong></td><td>Microsoft</td><td>$100,000 USD</td><td>Annually</td><td>Year 2–4</td><td><a href="https://imaginecup.microsoft.com" style="color:#67e8f9">imaginecup.microsoft.com</a></td></tr>
+      <tr><td><strong>MLH Hackathons</strong></td><td>Major League Hacking</td><td>Varies</td><td>Monthly (global)</td><td>Year 1–4</td><td><a href="https://mlh.io" style="color:#67e8f9">mlh.io</a></td></tr>
+      <tr><td><strong>Kaggle Competitions</strong></td><td>Kaggle/Google</td><td>$10k–$100k</td><td>Always active</td><td>Year 2–4</td><td><a href="https://www.kaggle.com/competitions" style="color:#67e8f9">kaggle.com/competitions</a></td></tr>
+      <tr><td><strong>Devfolio Hackathons</strong></td><td>Devfolio</td><td>₹50k–5L</td><td>Monthly</td><td>Year 1–4</td><td><a href="https://devfolio.co" style="color:#67e8f9">devfolio.co</a></td></tr>
+      <tr><td><strong>Unstop Competitions</strong></td><td>Unstop</td><td>Varies</td><td>Always active</td><td>Year 1–4</td><td><a href="https://unstop.com" style="color:#67e8f9">unstop.com</a></td></tr>
+    </tbody>
+  </table>
+
+  <!-- ═══════════════════════════════ SECTION 6: INTERNSHIPS ══ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.3)">💼</div>
+    <div><h2 style="background:var(--gradient2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">How to Get Internships — Complete Strategy</h2><p>From zero experience to ₹80k/month stipend</p></div>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <h3 style="margin-bottom:16px;color:#67e8f9">📱 Platforms to Apply (with Links)</h3>
+      <table>
+        <thead><tr><th>Platform</th><th>Best For</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Internshala</strong></td><td>Year 1–2 (best fresher platform)</td><td><a href="https://internshala.com" style="color:#67e8f9">internshala.com</a></td></tr>
+          <tr><td><strong>LinkedIn Jobs</strong></td><td>All years (filter: internship)</td><td><a href="https://linkedin.com/jobs" style="color:#67e8f9">linkedin.com/jobs</a></td></tr>
+          <tr><td><strong>Unstop</strong></td><td>Competitions + internships</td><td><a href="https://unstop.com" style="color:#67e8f9">unstop.com</a></td></tr>
+          <tr><td><strong>AngelList / Wellfound</strong></td><td>Startups (high stipend)</td><td><a href="https://wellfound.com" style="color:#67e8f9">wellfound.com</a></td></tr>
+          <tr><td><strong>Naukri</strong></td><td>Mass apply</td><td><a href="https://naukri.com" style="color:#67e8f9">naukri.com</a></td></tr>
+          <tr><td><strong>HackerEarth</strong></td><td>Coding + hiring</td><td><a href="https://www.hackerearth.com" style="color:#67e8f9">hackerearth.com</a></td></tr>
+          <tr><td><strong>Cutshort</strong></td><td>Startup internships</td><td><a href="https://cutshort.io" style="color:#67e8f9">cutshort.io</a></td></tr>
+          <tr><td><strong>AICTE Internship Portal</strong></td><td>Govt-approved internships</td><td><a href="https://internship.aicte-india.org" style="color:#67e8f9">aicte-india.org</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3 style="margin-bottom:16px;color:#67e8f9">📧 Cold Email / Cold Message Template</h3>
+      <div class="code-block" style="color:#e2e8f0;font-family:'Inter',sans-serif;font-size:13px">
+<span style="color:#79c0ff">Subject:</span> AI/ML Internship — Passionate Student with Projects
+
+Hi [Founder/Manager Name],
+
+I'm [Your Name], a 1st-year B.Tech student
+specializing in AI/ML at [College Name].
+
+I've built: [Project 1 - 1 line] and [Project 2].
+Both are live on my GitHub: github.com/your-username
+
+I'm passionate about [specific thing company does]
+and would love to contribute even as an unpaid
+intern for 4–8 weeks this summer.
+
+I can work 20 hrs/week remotely. I learn fast and
+I'll never waste your time.
+
+My portfolio: [your-portfolio-url]
+
+Would you be open to a 10-minute call?
+
+Thanks,
+[Your Name] | [LinkedIn URL]
+      </div>
+      <div class="callout callout-info" style="margin-top:12px">
+        <span class="callout-icon">📊</span>
+        <div><div class="callout-title">Apply Strategy</div><div class="callout-text">Send <strong>20–30 applications per week</strong>. Even a 5% response rate = 1–2 interviews/week. Mass apply on Internshala + targeted cold email on LinkedIn.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION 7: DSA ══ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3)">🧩</div>
+    <div><h2 style="background:var(--gradient3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">DSA Master Plan — 4 Year LeetCode Journey</h2><p>The non-negotiable skill for any package above ₹10 LPA</p></div>
+  </div>
+
+  <table>
+    <thead><tr><th>Time Period</th><th>Topics</th><th>LeetCode Target</th><th>Difficulty</th></tr></thead>
+    <tbody>
+      <tr><td>Year 1 (Nov–Aug)</td><td>Arrays, Strings, Hashing, Two Pointers</td><td>50 problems</td><td>Easy</td></tr>
+      <tr><td>Year 2 (Aug–Jun)</td><td>Linked Lists, Stacks, Queues, Recursion, Sorting</td><td>150 problems total</td><td>Easy + Medium</td></tr>
+      <tr><td>Year 3 (Aug–Jun)</td><td>Trees, Graphs, BFS/DFS, Heap, Tries, Greedy</td><td>250 problems total</td><td>Medium</td></tr>
+      <tr><td>Year 4 (Aug–Feb)</td><td>Dynamic Programming, Backtracking, Hard Graph problems</td><td>350 problems total</td><td>Medium + Hard</td></tr>
+    </tbody>
+  </table>
+
+  <div class="grid-3" style="margin-top:16px">
+    <a href="https://leetcode.com" class="link-btn link-btn-purple" target="_blank" style="padding:12px 20px;font-size:14px">LeetCode — Primary Practice</a>
+    <a href="https://www.youtube.com/c/takeUforward" class="link-btn link-btn-cyan" target="_blank" style="padding:12px 20px;font-size:14px">Striver DSA Playlist (YouTube)</a>
+    <a href="https://neetcode.io/roadmap" class="link-btn link-btn-green" target="_blank" style="padding:12px 20px;font-size:14px">NeetCode Roadmap</a>
+    <a href="https://codeforces.com" class="link-btn link-btn-amber" target="_blank" style="padding:12px 20px;font-size:14px">Codeforces (Competitive)</a>
+    <a href="https://www.codechef.com" class="link-btn link-btn-purple" target="_blank" style="padding:12px 20px;font-size:14px">CodeChef</a>
+    <a href="https://www.interviewbit.com" class="link-btn link-btn-cyan" target="_blank" style="padding:12px 20px;font-size:14px">InterviewBit</a>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION 8: SALARY LADDER ══ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3)">💰</div>
+    <div><h2 style="color:#fbbf24">The Salary Ladder to ₹1 Crore</h2><p>Realistic milestones from internship to dream package</p></div>
+  </div>
+
+  <div class="ladder">
+    <div class="ladder-rung" style="border-color:#94a3b8"><div class="rung-year">Year 1 End</div><div class="rung-amount" style="color:#94a3b8">₹5–15k/mo</div><div class="rung-desc">First remote internship at startup (stipend). Build credibility and first project.</div></div>
+    <div class="ladder-rung" style="border-color:#6ee7b7"><div class="rung-year">Year 2 End</div><div class="rung-amount" style="color:#6ee7b7">₹20–40k/mo</div><div class="rung-desc">Paid internship. Mid-size company or funded startup. Real ML project experience.</div></div>
+    <div class="ladder-rung" style="border-color:#67e8f9"><div class="rung-year">Year 3 End</div><div class="rung-amount" style="color:#67e8f9">₹50–80k/mo</div><div class="rung-desc">High-value internship at Samsung R&D / Nvidia / Series B startup. PPO likely.</div></div>
+    <div class="ladder-rung" style="border-color:#a78bfa"><div class="rung-year">Graduation</div><div class="rung-amount" style="color:#a78bfa">₹20–60 LPA</div><div class="rung-desc">Campus or off-campus offer. Walmart, Adobe, Salesforce, or PPO conversion.</div></div>
+    <div class="ladder-rung" style="border-color:#fbbf24"><div class="rung-year">2–3 yrs exp</div><div class="rung-amount" style="color:#fbbf24">₹40–80 LPA</div><div class="rung-desc">Job switch. Strong skills + portfolio = massive salary jump. Target FAANG India.</div></div>
+    <div class="ladder-rung" style="border-color:#f59e0b;border-radius:0 0 12px 12px"><div class="rung-year">4–6 yrs exp</div><div class="rung-amount" style="color:#f59e0b">₹1 Cr+</div><div class="rung-desc">Senior ML Engineer at Google/Microsoft India, or startup CTO/ML lead, or abroad role.</div></div>
+  </div>
+
+  <div class="callout callout-warning" style="margin-top:20px">
+    <span class="callout-icon">💡</span>
+    <div><div class="callout-title">The Job Switch Strategy (Fastest Path to ₹1 Crore)</div><div class="callout-text">In India's tech industry, switching jobs every 2–3 years with strong skills gives <strong>40–80% salary jumps</strong> each time. Getting ₹25 LPA at graduation → switch to ₹50 LPA at yr 3 → switch to ₹1 Cr+ at yr 5–6 is very achievable with consistent skill building.</div></div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION 9: CERTIFICATIONS ══ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3)">🏅</div>
+    <div><h2 style="background:var(--gradient2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Certifications — What to Get & When</h2><p>Free and paid certs that recruiters actually care about</p></div>
+  </div>
+
+  <table>
+    <thead><tr><th>Certificate</th><th>Provider</th><th>Cost</th><th>When</th><th>Link</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Python (Crash Course)</strong></td><td>Google / Coursera</td><td>Free (audit)</td><td>Month 2</td><td><a href="https://www.coursera.org/professional-certificates/google-it-automation" style="color:#67e8f9">Coursera</a></td></tr>
+      <tr><td><strong>Kaggle Python</strong></td><td>Kaggle</td><td>Free</td><td>Month 3</td><td><a href="https://www.kaggle.com/learn/python" style="color:#67e8f9">kaggle.com/learn</a></td></tr>
+      <tr><td><strong>Kaggle Pandas + ML</strong></td><td>Kaggle</td><td>Free</td><td>Month 4–5</td><td><a href="https://www.kaggle.com/learn" style="color:#67e8f9">kaggle.com/learn</a></td></tr>
+      <tr><td><strong>Machine Learning Specialization</strong></td><td>Andrew Ng / Coursera</td><td>Free (audit)</td><td>Year 2</td><td><a href="https://www.coursera.org/specializations/machine-learning-introduction" style="color:#67e8f9">Coursera</a></td></tr>
+      <tr><td><strong>Deep Learning Specialization</strong></td><td>deeplearning.ai</td><td>Free (audit)</td><td>Year 2</td><td><a href="https://www.deeplearning.ai/courses/" style="color:#67e8f9">deeplearning.ai</a></td></tr>
+      <tr><td><strong>AWS Cloud Practitioner</strong></td><td>AWS</td><td>Free training / $100 exam</td><td>Year 3</td><td><a href="https://aws.amazon.com/certification/certified-cloud-practitioner/" style="color:#67e8f9">aws.amazon.com</a></td></tr>
+      <tr><td><strong>Google Cloud Associate</strong></td><td>Google Cloud</td><td>$200 exam (apply for voucher)</td><td>Year 3</td><td><a href="https://cloud.google.com/certification" style="color:#67e8f9">cloud.google.com</a></td></tr>
+      <tr><td><strong>TensorFlow Developer</strong></td><td>Google / Coursera</td><td>$100 exam</td><td>Year 3</td><td><a href="https://www.tensorflow.org/certificate" style="color:#67e8f9">tensorflow.org</a></td></tr>
+      <tr><td><strong>GitHub Foundations</strong></td><td>GitHub</td><td>Free</td><td>Month 3</td><td><a href="https://resources.github.com/learn/certifications/" style="color:#67e8f9">github.com</a></td></tr>
+      <tr><td><strong>NPTEL Elite Certificate</strong></td><td>IIT Professors</td><td>Free (paid exam ₹1000)</td><td>Any semester</td><td><a href="https://nptel.ac.in" style="color:#67e8f9">nptel.ac.in</a></td></tr>
+    </tbody>
+  </table>
+
+  <!-- ═══════════════════════════════ SECTION 10: ABROAD ══ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(124,58,237,0.15); border:1px solid rgba(124,58,237,0.3)">✈️</div>
+    <div><h2 style="background:var(--gradient4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Abroad Journey — Complete Guide</h2><p>MS in USA/Canada/Germany or direct work visa — both paths explained</p></div>
+  </div>
+
+  <div class="callout callout-info">
+    <span class="callout-icon">🌍</span>
+    <div><div class="callout-title">Two Paths to Abroad</div><div class="callout-text"><strong>Path A:</strong> MS (Master's) → Student visa → Job in that country (most common)<br/><strong>Path B:</strong> Work in India 2–3 years → Company transfer (L1 visa) or direct H-1B sponsorship → Abroad<br/><strong>Path C:</strong> Direct work visa (Germany Blue Card, Canada PR, UK Skilled Worker) — possible with 2+ years experience</div></div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:24px">
+    <!-- USA -->
+    <div class="country-card" style="border-color:#3b82f6">
+      <div class="country-flag">🇺🇸</div>
+      <div class="country-name">United States</div>
+      <div class="country-salary" style="color:#60a5fa">💰 $120,000 – $300,000+/year (₹1–2.5 Cr+)</div>
+      <div class="country-tags">
+        <span class="badge badge-cyan">MS Route</span>
+        <span class="badge badge-purple">H-1B Visa</span>
+        <span class="badge badge-green">OPT (3 yrs STEM)</span>
+      </div>
+      <h4 style="margin-bottom:10px">MS in USA — Step by Step:</h4>
+      <div class="timeline" style="padding-left:24px">
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="time-tag">Year 3 (Jan–Jun)</div><h4>GRE Exam</h4><p style="font-size:12px;color:var(--text2)">Target: 320+ score. <a href="https://www.ets.org/gre" style="color:#67e8f9">ets.org/gre</a> | Prep: <a href="https://magoosh.com/gre" style="color:#67e8f9">Magoosh GRE</a></p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="time-tag">Year 3 (Jun–Sep)</div><h4>TOEFL / IELTS</h4><p style="font-size:12px;color:var(--text2)">TOEFL: 100+ or IELTS: 7.0+ | <a href="https://www.ets.org/toefl" style="color:#67e8f9">ets.org/toefl</a></p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="time-tag">Year 4 (Aug–Nov)</div><h4>Applications</h4><p style="font-size:12px;color:var(--text2)">Apply to 8–12 universities. SOPs, LORs, Resume. <a href="https://www.yocket.com" style="color:#67e8f9">Yocket.com</a> for guidance</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="time-tag">Year 4 (Dec–Mar)</div><h4>Admit + Visa</h4><p style="font-size:12px;color:var(--text2)">Get admits → Apply F-1 student visa → Book VFS appointment</p></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="time-tag">After MS (1.5–2 yrs)</div><h4>Job + OPT + H-1B</h4><p style="font-size:12px;color:var(--text2)">Get campus job → OPT → Apply for H-1B → Permanent Resident path</p></div>
+      </div>
+      <h4 style="margin-top:12px;margin-bottom:8px">Top Universities for AI/ML (MS):</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span class="tag">Carnegie Mellon (CMU)</span>
+        <span class="tag">Stanford</span>
+        <span class="tag">MIT</span>
+        <span class="tag">UC Berkeley</span>
+        <span class="tag">University of Texas Austin</span>
+        <span class="tag">ASU</span>
+        <span class="tag">Northeastern</span>
+        <span class="tag">UMASS Amherst</span>
+      </div>
+      <div class="callout callout-info" style="margin-top:12px">
+        <span class="callout-icon">💡</span>
+        <div><div class="callout-title">Funding</div><div class="callout-text">Apply for TA/RA (Teaching/Research Assistantship) → Covers full tuition + stipend of $1500–2500/month. <strong>Almost free MS!</strong></div></div>
+      </div>
+    </div>
+
+    <!-- Canada -->
+    <div class="country-card" style="border-color:#ef4444">
+      <div class="country-flag">🇨🇦</div>
+      <div class="country-name">Canada</div>
+      <div class="country-salary" style="color:#fca5a5">💰 CAD $90,000 – $180,000/year (₹55L–1.1 Cr)</div>
+      <div class="country-tags">
+        <span class="badge badge-red">MS Route</span>
+        <span class="badge badge-amber">PR Friendly</span>
+        <span class="badge badge-green">PGWP (3 yrs)</span>
+      </div>
+      <h4 style="margin-bottom:10px">Why Canada is Great for Indians:</h4>
+      <ul class="checklist">
+        <li>Lower cost of living than USA</li>
+        <li>PGWP (Post-Graduate Work Permit) = 3 years to work freely</li>
+        <li>Express Entry → Permanent Residency in 2–3 years</li>
+        <li>No H-1B lottery gamble like USA</li>
+      </ul>
+      <h4 style="margin-top:12px;margin-bottom:8px">Top Universities:</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span class="tag">University of Toronto</span>
+        <span class="tag">UBC Vancouver</span>
+        <span class="tag">McGill</span>
+        <span class="tag">University of Waterloo</span>
+        <span class="tag">University of Alberta</span>
+      </div>
+      <div class="callout callout-success" style="margin-top:12px">
+        <span class="callout-icon">🌿</span>
+        <div><div class="callout-title">PR Route (Easiest for Indians)</div><div class="callout-text">MS (2 yr) → PGWP (3 yr work) → Express Entry PR → Citizenship. Total: ~7 years. Easier than USA Green Card (10–15 yrs wait).</div></div>
+      </div>
+    </div>
+
+    <!-- Germany -->
+    <div class="country-card" style="border-color:#fbbf24">
+      <div class="country-flag">🇩🇪</div>
+      <div class="country-name">Germany</div>
+      <div class="country-salary" style="color:#fcd34d">💰 €60,000 – €130,000/year (₹55L–1.2 Cr)</div>
+      <div class="country-tags">
+        <span class="badge badge-amber">FREE Education</span>
+        <span class="badge badge-green">Blue Card</span>
+        <span class="badge badge-purple">No GRE</span>
+      </div>
+      <h4 style="margin-bottom:10px">Why Germany is Underrated:</h4>
+      <ul class="checklist">
+        <li><strong>FREE MS degree</strong> at public universities (even for Indians!)</li>
+        <li>No GRE required for most universities</li>
+        <li>EU Blue Card = work permit after MS → PR in 21–33 months</li>
+        <li>Strong automotive + engineering AI sector</li>
+      </ul>
+      <h4 style="margin-top:12px;margin-bottom:8px">Top Universities:</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span class="tag">TU Munich (TUM)</span>
+        <span class="tag">RWTH Aachen</span>
+        <span class="tag">Heidelberg</span>
+        <span class="tag">KIT Karlsruhe</span>
+        <span class="tag">TU Berlin</span>
+      </div>
+      <div class="callout callout-info" style="margin-top:12px">
+        <span class="callout-icon">📚</span>
+        <div><div class="callout-title">Language Requirement</div><div class="callout-text">Many programs are in English. German B2 helps for non-English programs. Start German on <a href="https://www.duolingo.com" style="color:#67e8f9">Duolingo</a> from Year 2!</div></div>
+      </div>
+    </div>
+
+    <!-- UK -->
+    <div class="country-card" style="border-color:#a78bfa">
+      <div class="country-flag">🇬🇧</div>
+      <div class="country-name">United Kingdom</div>
+      <div class="country-salary" style="color:#c4b5fd">💰 £60,000 – £150,000/year (₹65L–1.6 Cr)</div>
+      <div class="country-tags">
+        <span class="badge badge-purple">1-yr MS</span>
+        <span class="badge badge-cyan">Skilled Worker Visa</span>
+        <span class="badge badge-amber">Graduate Visa (2yr)</span>
+      </div>
+      <h4 style="margin-bottom:10px">UK Advantages:</h4>
+      <ul class="checklist">
+        <li>Only 1-year MS (cheaper + faster)</li>
+        <li>Graduate Route Visa = 2 years to find job</li>
+        <li>Strong AI/ML scene in London, Edinburgh</li>
+        <li>DeepMind, Amazon UK, Barclays AI all hire from top UK unis</li>
+      </ul>
+      <h4 style="margin-top:12px;margin-bottom:8px">Top Universities:</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span class="tag">Oxford</span>
+        <span class="tag">Cambridge</span>
+        <span class="tag">Imperial College London</span>
+        <span class="tag">University of Edinburgh</span>
+        <span class="tag">University of Manchester</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Abroad Prep Timeline -->
+  <div class="card" style="border-color:rgba(124,58,237,0.3)">
+    <h3 style="color:#a78bfa;margin-bottom:16px">🗓️ Abroad Preparation Timeline (Start from Year 2)</h3>
+    <table>
+      <thead><tr><th>When</th><th>What to Do</th><th>Resources</th></tr></thead>
+      <tbody>
+        <tr><td>Year 2 Jan</td><td>Start researching universities and programs</td><td><a href="https://www.yocket.com" style="color:#67e8f9">Yocket.com</a>, <a href="https://www.shorelight.com" style="color:#67e8f9">Shorelight</a></td></tr>
+        <tr><td>Year 2 Jun</td><td>Start GRE preparation (if USA/UK target)</td><td><a href="https://magoosh.com/gre/" style="color:#67e8f9">Magoosh GRE</a>, <a href="https://www.gregmat.com" style="color:#67e8f9">GregMat</a></td></tr>
+        <tr><td>Year 3 Jan</td><td>Give GRE exam (target 320+)</td><td><a href="https://www.ets.org/gre" style="color:#67e8f9">ETS GRE</a></td></tr>
+        <tr><td>Year 3 Jun</td><td>Give TOEFL/IELTS (target 100+/7.0+)</td><td><a href="https://www.ets.org/toefl" style="color:#67e8f9">TOEFL</a>, <a href="https://www.ielts.org" style="color:#67e8f9">IELTS</a></td></tr>
+        <tr><td>Year 3 Aug–Dec</td><td>Write SOP (Statement of Purpose), get LORs (3 professors)</td><td><a href="https://www.reddit.com/r/gradadmissions/" style="color:#67e8f9">r/gradadmissions</a></td></tr>
+        <tr><td>Year 4 Aug–Nov</td><td>Apply to 10+ universities (rolling deadlines)</td><td><a href="https://www.commonapp.org" style="color:#67e8f9">CommonApp</a> (US)</td></tr>
+        <tr><td>Year 4 Dec–Mar</td><td>Receive admits, compare scholarships, accept offer</td><td>University official portals</td></tr>
+        <tr><td>Year 4 Apr–Jun</td><td>Apply for student visa, book flights, housing</td><td><a href="https://travel.state.gov" style="color:#67e8f9">US Visa (F-1)</a></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-warning" style="margin-top:16px">
+      <span class="callout-icon">💰</span>
+      <div><div class="callout-title">Cost Estimate for MS Abroad</div><div class="callout-text"><strong>USA:</strong> $50,000–80,000 total (TA/RA can cover most) | <strong>Canada:</strong> CAD 40,000–60,000 | <strong>Germany:</strong> €5,000–15,000 total (almost free!) | <strong>UK:</strong> £25,000–35,000<br/>Apply for education loans (SBI Scholar Loan, HDFC Credila, Prodigy Finance)</div></div>
+    </div>
+  </div>
+
+  <!-- FAANG Abroad -->
+  <div class="card" style="border:2px solid rgba(251,191,36,0.4);background:linear-gradient(135deg,rgba(251,191,36,0.05),rgba(245,158,11,0.05))">
+    <h3 style="color:#fbbf24;margin-bottom:16px">🏆 Direct Job Abroad (Without MS) — Possible After 2–3 Yrs India Exp</h3>
+    <div class="grid-3">
+      <div>
+        <h4 style="color:#fcd34d;margin-bottom:8px">Companies that Transfer India → Abroad</h4>
+        <ul class="checklist">
+          <li>Google (Bangalore → Mountain View)</li>
+          <li>Microsoft (Hyderabad → Seattle)</li>
+          <li>Amazon (India → USA/UK/Canada)</li>
+          <li>Uber, Airbnb, LinkedIn (transfer possible)</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:#fcd34d;margin-bottom:8px">Direct Hiring Platforms</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <a href="https://www.linkedin.com/jobs" class="link-btn link-btn-amber" target="_blank">LinkedIn Jobs</a>
+          <a href="https://www.levels.fyi" class="link-btn link-btn-amber" target="_blank">Levels.fyi (Salaries)</a>
+          <a href="https://relocate.me" class="link-btn link-btn-amber" target="_blank">Relocate.me</a>
+          <a href="https://remoteok.com" class="link-btn link-btn-amber" target="_blank">RemoteOK</a>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#fcd34d;margin-bottom:8px">Useful Abroad Resources</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <a href="https://www.reddit.com/r/cscareerquestions/" class="link-btn link-btn-amber" target="_blank">r/cscareerquestions</a>
+          <a href="https://www.reddit.com/r/ImmigrationIndia/" class="link-btn link-btn-amber" target="_blank">r/ImmigrationIndia</a>
+          <a href="https://www.glassdoor.com" class="link-btn link-btn-amber" target="_blank">Glassdoor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION 11: RESUME ══ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3)">📄</div>
+    <div><h2 style="background:var(--gradient2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Resume That Gets Shortlisted</h2><p>Exact format, tools, and content that works</p></div>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <h4 style="color:#6ee7b7;margin-bottom:12px">Resume Format (Order Matters):</h4>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Header</h4><p>Name, Phone, Email, GitHub link, LinkedIn link, Portfolio URL</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Education</h4><p>College, Branch, CGPA (if 7+), Year, Location</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Skills</h4><p>Languages: Python, SQL | Libraries: TensorFlow, PyTorch | Tools: Git, Docker, AWS</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Projects (Most Important Section)</h4><p>3–4 projects. Format: [Name] | [Tech Stack] — What it does + impact (metrics if possible)</p></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><h4>Internships / Experience</h4><p>Company | Role | Duration | What you did + impact</p></div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content"><h4>Achievements</h4><p>Hackathon wins, LeetCode rank, Kaggle rank, publications</p></div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-content"><h4>Certifications</h4><p>Google, AWS, Coursera, NPTEL — with dates</p></div></div>
+    </div>
+    <div>
+      <h4 style="color:#6ee7b7;margin-bottom:12px">Resume Tools (Free):</h4>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="https://www.overleaf.com/gallery/tagged/cv" class="link-btn link-btn-green" target="_blank" style="padding:12px">📄 Overleaf (LaTeX Resume — Best ATS-Friendly Format)</a>
+        <a href="https://flowcv.com" class="link-btn link-btn-green" target="_blank" style="padding:12px">🎨 FlowCV (Modern Free Resume Builder)</a>
+        <a href="https://www.canva.com/resumes/" class="link-btn link-btn-green" target="_blank" style="padding:12px">🖌️ Canva (Visual Resume — NOT for ATS)</a>
+        <a href="https://resumeworded.com" class="link-btn link-btn-green" target="_blank" style="padding:12px">🤖 ResumeWorded (AI Resume Checker — Free)</a>
+        <a href="https://enhancv.com" class="link-btn link-btn-green" target="_blank" style="padding:12px">✅ Enhancv (Modern + ATS Friendly)</a>
+      </div>
+      <div class="callout callout-warning" style="margin-top:16px">
+        <span class="callout-icon">⚠️</span>
+        <div><div class="callout-title">Critical Resume Rules</div><div class="callout-text">• Keep it to <strong>1 page</strong> (always)<br/>• No photos, no colors, no fancy borders (ATS rejects them)<br/>• Use <strong>action verbs</strong>: Built, Designed, Deployed, Achieved<br/>• Quantify everything: "Achieved 94% accuracy" > "Good accuracy"</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION 12: COMMUNITIES ══ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.3)">👥</div>
+    <div><h2 style="background:var(--gradient2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Communities & People to Follow</h2><p>Your network = your net worth</p></div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card" style="border-color:rgba(6,182,212,0.3)">
+      <h4 style="color:#67e8f9;margin-bottom:12px">Discord Communities</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <a href="https://discord.gg/hugging-face-879548962464493619" class="link-btn link-btn-cyan" target="_blank">Hugging Face</a>
+        <a href="https://discord.gg/mlops-community" class="link-btn link-btn-cyan" target="_blank">MLOps Community</a>
+        <a href="https://discord.gg/codeday" class="link-btn link-btn-cyan" target="_blank">CodeDay</a>
+        <a href="https://discord.gg/langchain" class="link-btn link-btn-cyan" target="_blank">LangChain</a>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(124,58,237,0.3)">
+      <h4 style="color:#a78bfa;margin-bottom:12px">Reddit Communities</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <a href="https://reddit.com/r/MachineLearning" class="link-btn link-btn-purple" target="_blank">r/MachineLearning</a>
+        <a href="https://reddit.com/r/learnmachinelearning" class="link-btn link-btn-purple" target="_blank">r/learnML</a>
+        <a href="https://reddit.com/r/cscareerquestions" class="link-btn link-btn-purple" target="_blank">r/cscareerquestions</a>
+        <a href="https://reddit.com/r/developersIndia" class="link-btn link-btn-purple" target="_blank">r/developersIndia</a>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(16,185,129,0.3)">
+      <h4 style="color:#6ee7b7;margin-bottom:12px">YouTube Channels (Must Subscribe)</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <a href="https://www.youtube.com/@AndrejKarpathy" class="link-btn link-btn-green" target="_blank">Andrej Karpathy</a>
+        <a href="https://www.youtube.com/c/3blue1brown" class="link-btn link-btn-green" target="_blank">3Blue1Brown</a>
+        <a href="https://www.youtube.com/c/CodeWithHarry" class="link-btn link-btn-green" target="_blank">CodeWithHarry</a>
+        <a href="https://www.youtube.com/c/takeUforward" class="link-btn link-btn-green" target="_blank">TakeUForward (DSA)</a>
+        <a href="https://www.youtube.com/@GauravSenVideo" class="link-btn link-btn-green" target="_blank">Gaurav Sen (System Design)</a>
+        <a href="https://www.youtube.com/@sentdex" class="link-btn link-btn-green" target="_blank">Sentdex (Python/ML)</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:rgba(245,158,11,0.3);margin-top:0">
+    <h4 style="color:#fcd34d;margin-bottom:12px">Twitter/X Accounts to Follow (AI Leaders)</h4>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <a href="https://twitter.com/AndrewYNg" class="link-btn link-btn-amber" target="_blank">@AndrewYNg (Andrew Ng)</a>
+      <a href="https://twitter.com/ylecun" class="link-btn link-btn-amber" target="_blank">@ylecun (Yann LeCun - Meta AI)</a>
+      <a href="https://twitter.com/karpathy" class="link-btn link-btn-amber" target="_blank">@karpathy (Andrej Karpathy)</a>
+      <a href="https://twitter.com/sama" class="link-btn link-btn-amber" target="_blank">@sama (Sam Altman - OpenAI CEO)</a>
+      <a href="https://twitter.com/drfeifei" class="link-btn link-btn-amber" target="_blank">@drfeifei (Fei-Fei Li)</a>
+      <a href="https://twitter.com/suchenzang" class="link-btn link-btn-amber" target="_blank">@suchenzang (Scale AI CEO)</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ SECTION 13: ACTION WEEK 1 ══ -->
+  <div class="divider"></div>
+  <div style="background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(6,182,212,0.05));border:2px solid rgba(16,185,129,0.3);border-radius:20px;padding:32px;margin-bottom:32px">
+    <h2 style="color:#6ee7b7;margin-bottom:8px;font-size:26px">✅ Your Week 1 Action Plan</h2>
+    <p style="color:var(--text2);margin-bottom:24px">Do these 10 things in your first week of college. This sets you apart from 99% of your batch.</p>
+    <div class="grid-2">
+      <div>
+        <h4 style="margin-bottom:12px;color:#a7f3d0">Day 1–2: Setup Digital Presence</h4>
+        <ul class="checklist">
+          <li>Create GitHub account (professional username)</li>
+          <li>Create LinkedIn account (fill completely)</li>
+          <li>Install Python 3.11+ on laptop</li>
+          <li>Install VS Code editor</li>
+          <li>Install Git for Windows</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin-bottom:12px;color:#a7f3d0">Day 3–7: Start Learning</h4>
+        <ul class="checklist">
+          <li>Watch CodeWithHarry Python Day 1 video</li>
+          <li>Join r/learnmachinelearning on Reddit</li>
+          <li>Start "100 Days of Code" challenge</li>
+          <li>Register on Kaggle.com</li>
+          <li>Register on LeetCode.com</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ FINAL QUOTE ══ -->
+  <div style="text-align:center;padding:40px 20px">
+    <div style="font-size:48px;margin-bottom:16px">🚀</div>
+    <h2 style="font-size:28px;font-weight:900;background:var(--gradient1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px">Your journey to ₹1 Crore starts TODAY</h2>
+    <p style="color:var(--text2);max-width:600px;margin:0 auto;font-size:16px;line-height:1.8">"The best time to plant a tree was 20 years ago. The second best time is <strong style="color:#a78bfa">now</strong>. You have 4 years, complete guidance, and every resource at your fingertips. The only variable left is <strong style="color:#67e8f9">you</strong>."</p>
+    <div style="margin-top:24px;display:flex;justify-content:center;flex-wrap:wrap;gap:12px">
+      <a href="https://github.com" class="link-btn link-btn-purple" target="_blank" style="padding:14px 24px;font-size:15px">🐙 Start GitHub</a>
+      <a href="https://linkedin.com" class="link-btn link-btn-cyan" target="_blank" style="padding:14px 24px;font-size:15px">💼 Build LinkedIn</a>
+      <a href="https://kaggle.com/learn" class="link-btn link-btn-green" target="_blank" style="padding:14px 24px;font-size:15px">🤖 Start ML Learning</a>
+      <a href="https://leetcode.com" class="link-btn link-btn-amber" target="_blank" style="padding:14px 24px;font-size:15px">🧩 Start DSA</a>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="footer-title">Zero to ₹1 Crore Roadmap</div>
+  <p>Created for: MHT-CET 68 Percentile | B.Tech CSE (AI/ML) | 2026–2030 Batch</p>
+  <p style="margin-top:8px">🖨️ Press <strong>Ctrl + P</strong> → Save as PDF to keep this forever</p>
+</footer>
+
+<script>
+  // Smooth scroll for internal links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(anchor.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
